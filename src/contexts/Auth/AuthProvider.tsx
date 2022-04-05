@@ -1,9 +1,12 @@
-import { Children,  useState } from "react";
+import { useState } from "react";
 import { useApi } from "../../hooks/useAPI";
 import { User } from "../../types/User";
 import { AuthContext } from "./AuthContext";
 
-export const AuthProvider =({children}:{children: JSX.Element})=>{
+
+// mudei a tipagem para tipagem da função ao invés do parametro para ele entender que o retorno dessa função seria um componente react
+
+export const AuthProvider: React.FC =({children})=>{
     const[user,setUser] = useState<User | null>(null);
     const api = useApi();
 
@@ -28,7 +31,7 @@ export const AuthProvider =({children}:{children: JSX.Element})=>{
     return(
         
         <AuthContext.Provider value={{user, signIn, signOut}}>
-            {Children}
+            {children}
         </AuthContext.Provider>
     )
 }
